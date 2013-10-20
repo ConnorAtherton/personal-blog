@@ -1,15 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://yoursite.com/blog/archives/</loc>
-        <lastmod>2013-10-13T17:18:43+01:00</lastmod>
+        <loc>
+            http://socksoffcode/blog/2013/10/20/zombie-ninjas-attack-a-survivors-retrospective/
+        </loc>
+        <lastmod>2013-10-20T22:58:24+01:00</lastmod>
     </url>
     <url>
-        <loc>http://yoursite.com/</loc>
-        <lastmod>2013-10-13T17:18:43+01:00</lastmod>
+        <loc>http://socksoffcode/blog/archives/</loc>
+        <lastmod>2013-10-20T22:58:24+01:00</lastmod>
     </url>
     <url>
-        <loc>http://yoursite.com/robots.txt</loc>
-        <lastmod>2013-10-13T17:18:43+01:00</lastmod>
+        <loc>http://socksoffcode/</loc>
+        <lastmod>2013-10-20T22:58:25+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://socksoffcode/robots.txt</loc>
+        <lastmod>2013-10-20T14:37:20+01:00</lastmod>
     </url>
 </urlset>

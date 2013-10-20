@@ -1,16 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://yoursite.com/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2013-10-13T18:00:18+01:00</updated>
-  <id>http://yoursite.com/</id>
+  <title><![CDATA[Socks Off. Code.]]></title>
+  <link href="http://socksoffcode/atom.xml" rel="self"/>
+  <link href="http://socksoffcode/"/>
+  <updated>2013-10-20T22:59:11+01:00</updated>
+  <id>http://socksoffcode/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Connor Atherton]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Zombie Ninjas Attack: A survivor's retrospective]]></title>
+    <link href="http://socksoffcode/blog/2013/10/20/zombie-ninjas-attack-a-survivors-retrospective/"/>
+    <updated>2013-10-20T17:50:00+01:00</updated>
+    <id>http://socksoffcode/blog/2013/10/20/zombie-ninjas-attack-a-survivors-retrospective</id>
+    <content type="html"><![CDATA[<h2>This a a h1 itle</h2>
+
+<p>not quite sure what to write here coz its just list an example so i&rsquo;ll write some markdfown.</p>
+
+<ul>
+<li>djbskbj</li>
+<li>djbncksjbk.ejfv</li>
+<li>dkjbcasdhcb,jhv</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>Simple Javascript snippet</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// $ now refers to jquery</span>
+</span><span class='line'><span class="p">})(</span><span class="nx">jQuery</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<iframe width="420" height="315" src="http://socksoffcode//www.youtube.com/embed/vrHVmKBrXzA" frameborder="0" allowfullscreen></iframe>
+
+
+<p>What does this look like?</p>
+]]></content>
+  </entry>
   
 </feed>
