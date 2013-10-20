@@ -7,12 +7,12 @@
   font-size: 13px;
   line-height: 1.45em;
   @if $solarized == light {
-    background: lighten($base03, 1) $noise-bg !important;
+    background: $code-bg !important;
     border-right: 1px solid darken($base02, 2) !important;
     @include box-shadow(lighten($base03, 2) -1px 0 inset);
     text-shadow: lighten($base02, 2) 0 -1px;
   } @else {
-    background: $base02 $noise-bg !important;
+    background: $code-bg !important;
     border-right: 1px solid darken($base03, 2) !important;
     @include box-shadow(lighten($base02, 2) -1px 0 inset);
     text-shadow: darken($base02, 10) 0 -1px;

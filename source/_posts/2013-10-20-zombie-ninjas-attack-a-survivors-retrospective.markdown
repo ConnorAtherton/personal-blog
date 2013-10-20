@@ -20,7 +20,8 @@ not quite sure what to write here coz its just list an example so i'll write som
 	// $ now refers to jquery
 })(jQuery)
 ```
-
-<iframe width="420" height="315" src="//www.youtube.com/embed/vrHVmKBrXzA" frameborder="0" allowfullscreen></iframe>
+<div class="video-container">
+	<iframe src="//www.youtube.com/embed/vrHVmKBrXzA" frameborder="0" allowfullscreen></iframe>
+</div>
 
 What does this look like?
