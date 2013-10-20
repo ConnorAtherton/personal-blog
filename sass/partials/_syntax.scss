@@ -81,7 +81,6 @@ html .gist .gist-file {
   }
 }
 pre {
-  background: $pre-bg $noise-bg;
   @include border-radius(.4em);
   @extend .mono;
   border: 1px solid $pre-border;
@@ -122,7 +121,7 @@ p, li {
   padding: .8em;
   overflow-x: auto;
   line-height: 1.45em;
-  background: $base03 $noise-bg !important;
+  background: $white;
   color: $base1 !important;
   span { color: $base1 !important; }
   span { font-style: normal !important; font-weight: normal !important; }
@@ -214,8 +213,9 @@ pre, .highlight, .gist-highlight {
 }
 
 .highlight code { 
-  @extend .pre-code; background: #000;
+  @extend .pre-code; 
 }
+
 figure.code {
   background: none;
   padding: 0;
@@ -241,7 +241,6 @@ figure.code {
   font-weight: normal;
   margin-bottom: 0;
   @include border-top-radius(5px);
-  font-family: "Helvetica Neue", Arial, "Lucida Grande", "Lucida Sans Unicode", Lucida, sans-serif;
   background: #aaaaaa image-url("code_bg.png") top repeat-x;
   border: 1px solid #565656;
   border-top-color: #cbcbcb;

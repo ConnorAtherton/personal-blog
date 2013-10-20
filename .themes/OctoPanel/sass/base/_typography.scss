@@ -1,29 +1,22 @@
 $blockquote: $type-border !default;
-$sans: "Quattrocento Sans", "Helvetica Neue", Arial, sans-serif !default;
-$serif: "Roboto", Georgia, Times, "Times New Roman", serif !default;
+$sans: 'Quattrocento Sans', "Helvetica Neue", Arial, sans-serif !default;
+$serif: 'Roboto', Georgia, Times, "Times New Roman", serif !default;
 $mono: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace !default;
 $heading-font-family: "PT Serif", "Georgia", "Helvetica Neue", Arial, sans-serif !default;
-$header-title-font-family: $heading-font-family !default;
+$header-title-font-family: $serif !default;
 $header-subtitle-font-family: $heading-font-family !default;
 
-// Fonts
-.heading {
-  font-family: $heading-font-family;
-}
 .sans { font-family: $sans; }
 .serif { font-family: $serif; }
 .mono { font-family: $mono; }
 
 body > header h1 {
   font-size: 2.2em;
-  @extend .heading;
-  font-family: $header-title-font-family;
   font-weight: normal;
   line-height: 1.2em;
   margin-bottom: 0.6667em;
-}
-body > header h2 {
-  font-family: $header-subtitle-font-family;
+  letter-spacing: -2px;
+  @extend .serif;
 }
 
 body {
@@ -42,7 +35,6 @@ h1 {
 }
 
 #{headings()}{
-  @extend .heading;
   text-rendering: optimizelegibility;
   margin-bottom: 1em;
   font-weight: bold;
@@ -168,5 +160,9 @@ p {
 
 a {
   text-decoration: none;
+}
+
+h1, h2, h3, h4, h5 , h6 {
+  font-weight: normal;
 }
 

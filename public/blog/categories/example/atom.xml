@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: example | Socks Off. Code.]]></title>
-  <link href="http://socksoffcode/blog/categories/example/atom.xml" rel="self"/>
-  <link href="http://socksoffcode/"/>
-  <updated>2013-10-20T23:19:48+01:00</updated>
-  <id>http://socksoffcode/</id>
+  <title><![CDATA[Category: example | Socks Off and Code.]]></title>
+  <link href="http://blog.connoratherton.com/blog/categories/example/atom.xml" rel="self"/>
+  <link href="http://blog.connoratherton.com/"/>
+  <updated>2013-10-21T00:02:00+01:00</updated>
+  <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Zombie Ninjas Attack: A survivor's retrospective]]></title>
-    <link href="http://socksoffcode/blog/2013/10/20/zombie-ninjas-attack-a-survivors-retrospective/"/>
+    <link href="http://blog.connoratherton.com/blog/2013/10/20/zombie-ninjas-attack-a-survivors-retrospective/"/>
     <updated>2013-10-20T17:50:00+01:00</updated>
-    <id>http://socksoffcode/blog/2013/10/20/zombie-ninjas-attack-a-survivors-retrospective</id>
+    <id>http://blog.connoratherton.com/blog/2013/10/20/zombie-ninjas-attack-a-survivors-retrospective</id>
     <content type="html"><![CDATA[<h2>This a a h1 itle</h2>
 
 <p>not quite sure what to write here coz its just list an example so i&rsquo;ll write some markdfown.</p>
@@ -38,7 +38,7 @@
 <p>})(jQuery)
 ```</p>
 
-<iframe width="420" height="315" src="http://socksoffcode//www.youtube.com/embed/vrHVmKBrXzA" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="http://blog.connoratherton.com//www.youtube.com/embed/vrHVmKBrXzA" frameborder="0" allowfullscreen></iframe>
 
 
 <p>What does this look like?</p>

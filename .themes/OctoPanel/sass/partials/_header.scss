@@ -3,6 +3,10 @@
 		width: 90%;
 		margin: 100px auto 0 auto;
 		text-align: center;
+		> h1, h2 {
+			letter-spacing: -2px;
+			font-weight: 200;
+		}
 		@media only screen and (max-width: 850px) {
 			margin: 10px auto 0 auto;
 		}
