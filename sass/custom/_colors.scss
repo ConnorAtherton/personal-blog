@@ -24,7 +24,7 @@ $solarized: light;
 $base03:          #002b36; //darkest blue
 $base02:          #073642; //dark blue
 $base01:          #586e75; //darkest gray
-$base00:          #657b83; //dark gray
+$font-color:      hsl(26, 8%, 17%);; //off black
 $base0:           #839496; //medium gray
 $base1:           #93a1a1; //medium light gray
 $base2:           #eee8d5; //cream
@@ -38,7 +38,11 @@ $solar-blue:      #268bd2;
 $solar-cyan:      #2aa198;
 $solar-green:     #859900;
 $white: 		  #ffffff;
-$code-bg: 		  hsl(0, 0%, 87%);;
+$code-bg: 		  hsl(0, 0%, 87%);
+
+/* Button colors */
+$button-fill: 	  hsl(206, 90%, 66%);
+$button-border:   hsl(206, 72%, 48%);	 
 
 
 /* Non highlighted code colors */
