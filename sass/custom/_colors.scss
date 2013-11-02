@@ -43,7 +43,7 @@ $button-light-color: 	    hsl(206, 90%, 66%);
 $button-light-border:       $code-bg;	
 $button-light-hover-fill:   hsl(206, 90%, 66%);
 $button-light-hover-border: hsl(206, 72%, 48%);
-$button-light-fill: white;
+$button-light-fill: $white;
 
 // dark
 $button-dark-color:         hsl(0, 0%, 47%);

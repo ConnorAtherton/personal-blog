@@ -61,10 +61,6 @@ body {
       margin-right: $pad-wide;
     }
   }
-  > header {
-    padding-top: $header-padding-top;
-    padding-bottom: $header-padding-bottom;
-  }
 }
 
 html{
@@ -129,11 +125,6 @@ body > .container {
   }
 }
 
-// #content {
-//   overflow: auto;
-//   > div, > article { width: 100%; }
-// }
-
 .flex-content { max-width: 100%; height: auto; }
 
 article .video-container {
@@ -173,10 +164,14 @@ article .video-container object,
     -moz-box-shadow: inset 0 0 -3px rgba(0,0,0,0.3);
     box-shadow: inset 0 0 -3px  hsla(0, 0%, 0%, 0.9);
     max-width: 100%;
-    @media only screen and (max-width: 330px) { 
+    .subtitle {
+      display: none;
+    }
+    @media only screen and (max-width: 300px) { 
       min-height: 350px;
     }
   }
+
 
   .right {
     box-sizing: border-box;
