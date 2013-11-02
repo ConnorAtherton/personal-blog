@@ -62,7 +62,6 @@ body {
     }
   }
   > header {
-    font-size: $header-font-size;
     padding-top: $header-padding-top;
     padding-bottom: $header-padding-bottom;
   }
@@ -91,8 +90,12 @@ body > .container {
   width: 30%;
   height: 100%;
   max-width: 500px;
-  background-color: $left-background-color;
-  // background-image: $left-background-image;
+  @if $image == true {
+    background: $left-background-image !important;
+    border-right: 1px solid darken($base02, 5) !important;
+  } @else {
+    background-color: $left-background-color;
+  }
   > .inner-left {
     position: absolute;
     width: 100%;
@@ -130,14 +133,6 @@ body > .container {
 //   overflow: auto;
 //   > div, > article { width: 100%; }
 // }
-
-aside.sidebar {
-  float: none;
-  padding: 0 $pad-min 1px;
-  background-color: lighten($sidebar-bg, 2);
-  border-top: 1px solid $sidebar-border;
-  @extend .group;
-}
 
 .flex-content { max-width: 100%; height: auto; }
 

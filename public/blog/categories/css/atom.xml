@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CSS | Socks Off and Code.]]></title>
+  <link href="http://blog.connoratherton.com/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://blog.connoratherton.com/"/>
+  <updated>2013-11-02T16:38:10+00:00</updated>
+  <id>http://blog.connoratherton.com/</id>
+  <author>
+    <name><![CDATA[Connor Atherton]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Exploring CSS Syntax]]></title>
+    <link href="http://blog.connoratherton.com/blog/2013/11/02/exploring-css-syntax/"/>
+    <updated>2013-11-02T13:53:00+00:00</updated>
+    <id>http://blog.connoratherton.com/blog/2013/11/02/exploring-css-syntax</id>
+    <content type="html"><![CDATA[<p>Over the past few months I&rsquo;ve been writing a lot of SASS and I&rsquo;ve noticed there&rsquo;s a few different ways to write styles, some better than others in my opinion. In this post we&rsquo;ll see three of the most popular and then you can decide which one you like best.</p>
+
+<p>All the examples I&rsquo;ll use here are in SASS because that&rsquo;s what I&rsquo;ve been using. For those of you who haven&rsquo;t used SASS, it&rsquo;s like CSS on steroids, like really high end super expensive steroids. It makes writing CSS fun which is probably the greatest compliment I could give regarding anything to do with CSS.</p>
+
+<p>I should also mention there is LESS, an alternative to SASS that is also highly regarded in web circles. I haven&rsquo;t used it yet so I can&rsquo;t really comment on how good it is but from what I&rsquo;ve read it&rsquo;s also pretty sweet.</p>
+
+<h2>An imaginative story to set the scene</h2>
+
+<p>Right, down to business. Writing CSS isn&rsquo;t so bad, it&rsquo;s okay as long as it&rsquo;s properly formatted. Imagine the scenario. Your searching on GitHub and you come across a really interesting project, you do what any open source ninja would do and go right ahead and fork away. You browse the open issues and come across a simple one labeled <em>noob</em>, exactly what you want.</p>
+
+<p>All that&rsquo;s required is to modify a few styles in a few different places, sounds easy, almost too easy. So you look in the styles directory and see there is like 50 partials. Not a bad start. You open the file you need, say <code>_modals.scss</code> and <strong>HOLY MOTHER OF TABLE LAYOUTS! WHAT IS THIS</strong>. Upon looking at this unweildy set of horrific style declarations you make the very easy decision to scrap this whole plan. You delete your forked repo on GitHub and pretend none of this ever happened.</p>
+
+<p>Okay, so maybe that example was a little over dramatic (<em>just a little</em>) but I think it made the point that if you want to work in a team on a project then you need to learn how to format styles properly so they are readable and maintainable.</p>
+
+<h2>The good &lsquo;ol multi-line format</h2>
+
+<p>This is the most popular format for SASS and it&rsquo;s a selector followed by a brace with style declarations starting on the next line and the closing brace on it&rsquo;s own line.</p>
+
+<p><code>SASS
+.separator {
+  content: "\2022 ";
+  padding: 0 .4em 0 .2em;
+  display: inline-block;
+}
+</code></p>
+
+<p>This code is taken from the theme this very blog is using and one thing to notice is that there is always a space between the selector expression and the opening brace. This isn&rsquo;t enforced by syntax it&rsquo;s just convention. For those of you who do any serious programming this style will seem familiar to you, it&rsquo;s conventional for control statements to be written this way, it&rsquo;s often referred to as the K&amp;R style.</p>
+
+<h2>The hanging brace</h2>
+
+<p>This one isn&rsquo;t as popular as the format above but you will see it around sometime. This kind of formatting is very popular with <code>PHP</code> programming. Mainly because it gives the code a <strong>&lsquo;grouping&rsquo;</strong> feel to it. In my opinion it makes SASS look a lot more readable.</p>
+
+<p>Here is the same code as above but in the new style.</p>
+
+<p><code>SASS
+.separator
+{
+  content: "\2022 ";
+  padding: 0 .4em 0 .2em;
+  display: inline-block;
+}
+</code></p>
+
+<p>Okay so we haven&rsquo;t done much here so let&rsquo;s take a better example. What you see below is more complicated and looks pretty cluttered. Look what happens when we change to hanging braces.</p>
+
+<p>``` SASS Opening brace on same line</p>
+
+<h1>blog-archives {</h1>
+
+<p>  article {</p>
+
+<pre><code>padding: 1em 0 1em;
+position: relative;
+&amp;:last-child {
+  background: none;
+}
+</code></pre>
+
+<p>  }
+  h1 {</p>
+
+<pre><code>font-size: 1.5em;
+a {
+  @include hover-link;
+  color: inherit;
+  &amp;:hover { color: $link-color-hover; }
+  font-weight: normal;
+  display: inline-block;
+}
+</code></pre>
+
+<p>  }
+  a.category, time {</p>
+
+<pre><code>@extend .sans;
+color: $text-color-light;
+</code></pre>
+
+<p>  }
+  color: $text-color-light;
+  time {</p>
+
+<pre><code>font-size: .9em;
+line-height: 1.2em;
+.month, .day { display: inline-block; }
+.month { text-transform: uppercase; }
+</code></pre>
+
+<p>  }
+  p { margin-bottom: 1em; color: $link-color-hover; }
+}
+```</p>
+
+<p>``` SASS Opening brace on next line</p>
+
+<h1>blog-archives</h1>
+
+<p>{
+  article
+  {</p>
+
+<pre><code>padding: 1em 0 1em;
+position: relative;
+&amp;:last-child 
+{
+  background: none;
+}
+</code></pre>
+
+<p>  }
+  h1
+  {</p>
+
+<pre><code>font-size: 1.5em;
+a 
+{
+  @include hover-link;
+  color: inherit;
+  &amp;:hover { color: $link-color-hover; }
+  font-weight: normal;
+  display: inline-block;
+}
+</code></pre>
+
+<p>  }
+  a.category, time
+  {</p>
+
+<pre><code>@extend .sans;
+color: $text-color-light;
+</code></pre>
+
+<p>  }
+  color: $text-color-light;
+  time
+  {</p>
+
+<pre><code>font-size: .9em;
+line-height: 1.2em;
+.month 
+{ 
+  text-transform: uppercase; 
+}
+</code></pre>
+
+<p>  }
+  p
+  {</p>
+
+<pre><code>margin-bottom: 1em; 
+color: $link-color-hover; 
+</code></pre>
+
+<p>  }
+}
+```</p>
+
+<p>Placing the brace on the next line gives makes everything more readable but it just doesn&rsquo;t look as elegant in my opinion.</p>
+
+<h2>The one liner</h2>
+
+<p>This one is less common than the other two but I have seen it around. There was a really good blog post I read where the author argues in favour of this approach but for the life of me I can&rsquo;t remember where I read it. If I find it I&rsquo;ll put it at the bottom of this post.</p>
+
+<p>This format requires that your two braces be on the same line with all style rules in between like this;</p>
+
+<p><code>SASS
+.separator { content: "\2022 "; padding: 0 .4em 0 .2em; display: inline-block; }
+</code></p>
+
+<p>Notice the spacing between the different rules. However, even with the spacing this is so much harder to read and here we are using three rules. Imagine if there were 9 or 10! I dread to think how unreadable that would be. However, on the plus side it keeps the file nice and concise.</p>
+
+<p>My advice would be to use this format only if there is only one or two rules because then it is actually eadier to read as one line. Any more than two then it&rsquo;s best to use one of the first two.</p>
+
+<p>``` SASS
+// this..
+.month
+{
+  text-transform: uppercase;
+}</p>
+
+<p>//..is more readable like this
+.month { text-transform: uppercase; }
+```</p>
+
+<p>Ultimately, you just <strong>need to be consistent</strong>. If you start writing a style sheet using the first method don&rsquo;t suddenly switch to the second method. That&rsquo;s a big no no, you&rsquo;ll get no stickers if you do that and you&rsquo;ll just confuse people and we don&rsquo;t want to do that now do we.</p>
+]]></content>
+  </entry>
+  
+</feed>

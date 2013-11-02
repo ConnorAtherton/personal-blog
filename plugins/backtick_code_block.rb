@@ -16,7 +16,7 @@ module BacktickCodeBlock
 
       if @options =~ AllOptions
         @lang = $1
-        @caption = "<figcaption><span>#{$2}</span><a href='#{$3}'>#{$4 || 'link'}</a></figcaption>"
+        @caption = "<figcaption class='testing'><span>#{$2}</span><a href='#{$3}'>#{$4 || 'link'}</a></figcaption>"
       elsif @options =~ LangCaption
         @lang = $1
         @caption = "<figcaption><span>#{$2}</span></figcaption>"

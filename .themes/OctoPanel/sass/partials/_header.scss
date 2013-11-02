@@ -7,11 +7,13 @@
 		text-align: center;
 		a {
 			font-size: 30px;
-			color: $button-fill;
+			color: $white;
+			@extend .serif;
+			font-weight: 100;
 		}
-		> h1, h2 {
-			letter-spacing: -2px;
-			font-weight: 200;
+		h1, h2 {
+			letter-spacing: -1px;
+			text-transform: uppercase;
 		}
 		@media only screen and (max-width: 850px) {
 			margin: 25px auto 0 auto;
