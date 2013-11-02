@@ -6,9 +6,9 @@ comments: true
 categories: [SASS, CSS]
 ---
 
-Over the past few months I've been writing a lot of SASS and I've noticed there's a few different ways to write styles, some better than others in my opinion. In this post we'll see three of the most popular and then you can decide which one you like best.
+Over the past few months I've been writing a lot of SASS and I've noticed there's a few different ways to write styles, some better than others. In this post we'll see three of the most popular and then you can decide which one you like best.
 
-All the examples I'll use here are in SASS because that's what I've been using. For those of you who haven't used SASS, it's like CSS on steroids, like really high end super expensive steroids. It makes writing CSS fun which is probably the greatest compliment I could give regarding anything to do with CSS.
+All the examples I'll use here are SASS because that's what I've been using recently. For those of you who haven't used SASS, it's like CSS on steroids, like really high end super expensive steroids. It actualy makes writing maintainable CSS fun.
 
 I should also mention there is LESS, an alternative to SASS that is also highly regarded in web circles. I haven't used it yet so I can't really comment on how good it is but from what I've read it's also pretty sweet.
 
@@ -38,7 +38,7 @@ This code is taken from the theme this very blog is using and one thing to notic
 
 ## The hanging brace
 
-This one isn't as popular as the format above but you will see it around sometime. This kind of formatting is very popular with `PHP` programming. Mainly because it gives the code a **'grouping'** feel to it. In my opinion it makes SASS look a lot more readable.
+This one isn't as popular as the format above but you will see it around sometime. This kind of formatting is very popular with `PHP` programming. Mainly because it gives the code a **'grouping'** feel to it. I feel like SASS is more readable using this method.
 
 Here is the same code as above but in the new style.
 
@@ -134,7 +134,7 @@ Okay so we haven't done much here so let's take a better example. What you see b
 }
 ```
 
-Placing the brace on the next line gives makes everything more readable but it just doesn't look as elegant in my opinion. 
+Placing the brace on the next line makes it easy to see what pair of braces match but SASS just doesn't look as elegant formatted this way. I can't quite put my finger on what makes me slightly dislike this method for SASS, maybe it's because it makes nesting (*one of the best features*) look a bit awkward. 
 
 ## The one liner
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: CSS | Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/blog/categories/css/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-11-02T17:14:26+00:00</updated>
+  <updated>2013-11-02T20:35:15+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -18,9 +18,9 @@
     <link href="http://blog.connoratherton.com/blog/2013/11/02/exploring-css-syntax/"/>
     <updated>2013-11-02T13:53:00+00:00</updated>
     <id>http://blog.connoratherton.com/blog/2013/11/02/exploring-css-syntax</id>
-    <content type="html"><![CDATA[<p>Over the past few months I&rsquo;ve been writing a lot of SASS and I&rsquo;ve noticed there&rsquo;s a few different ways to write styles, some better than others in my opinion. In this post we&rsquo;ll see three of the most popular and then you can decide which one you like best.</p>
+    <content type="html"><![CDATA[<p>Over the past few months I&rsquo;ve been writing a lot of SASS and I&rsquo;ve noticed there&rsquo;s a few different ways to write styles, some better than others. In this post we&rsquo;ll see three of the most popular and then you can decide which one you like best.</p>
 
-<p>All the examples I&rsquo;ll use here are in SASS because that&rsquo;s what I&rsquo;ve been using. For those of you who haven&rsquo;t used SASS, it&rsquo;s like CSS on steroids, like really high end super expensive steroids. It makes writing CSS fun which is probably the greatest compliment I could give regarding anything to do with CSS.</p>
+<p>All the examples I&rsquo;ll use here are SASS because that&rsquo;s what I&rsquo;ve been using recently. For those of you who haven&rsquo;t used SASS, it&rsquo;s like CSS on steroids, like really high end super expensive steroids. It actualy makes writing maintainable CSS fun.</p>
 
 <p>I should also mention there is LESS, an alternative to SASS that is also highly regarded in web circles. I haven&rsquo;t used it yet so I can&rsquo;t really comment on how good it is but from what I&rsquo;ve read it&rsquo;s also pretty sweet.</p>
 
@@ -48,7 +48,7 @@
 
 <h2>The hanging brace</h2>
 
-<p>This one isn&rsquo;t as popular as the format above but you will see it around sometime. This kind of formatting is very popular with <code>PHP</code> programming. Mainly because it gives the code a <strong>&lsquo;grouping&rsquo;</strong> feel to it. In my opinion it makes SASS look a lot more readable.</p>
+<p>This one isn&rsquo;t as popular as the format above but you will see it around sometime. This kind of formatting is very popular with <code>PHP</code> programming. Mainly because it gives the code a <strong>&lsquo;grouping&rsquo;</strong> feel to it. I feel like SASS is more readable using this method.</p>
 
 <p>Here is the same code as above but in the new style.</p>
 
@@ -175,7 +175,7 @@ color: $link-color-hover;
 }
 ```</p>
 
-<p>Placing the brace on the next line gives makes everything more readable but it just doesn&rsquo;t look as elegant in my opinion.</p>
+<p>Placing the brace on the next line makes it easy to see what pair of braces match but SASS just doesn&rsquo;t look as elegant formatted this way. I can&rsquo;t quite put my finger on what makes me slightly dislike this method for SASS, maybe it&rsquo;s because it makes nesting (<em>one of the best features</em>) look a bit awkward.</p>
 
 <h2>The one liner</h2>
 
