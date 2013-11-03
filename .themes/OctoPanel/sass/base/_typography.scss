@@ -154,6 +154,13 @@ a {
   text-decoration: none;
 }
 
+.post a {
+  color: $button-light-hover-fill;
+  &:hover {
+    color: lighten($button-light-hover-fill, 10%);
+  }
+}
+
 h1, h2, h3, h4, h5 , h6 {
   font-weight: normal;
   @extend .serif;

@@ -4,7 +4,7 @@
   <title><![CDATA[Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-11-02T21:47:47+00:00</updated>
+  <updated>2013-11-03T15:10:10+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Introducing OctoPanel]]></title>
+    <link href="http://blog.connoratherton.com/blog/2013/11/03/introducing-octopanel/"/>
+    <updated>2013-11-03T14:18:00+00:00</updated>
+    <id>http://blog.connoratherton.com/blog/2013/11/03/introducing-octopanel</id>
+    <content type="html"><![CDATA[<p>This project all started when I stumbled across OctoPress, a blogging framework for Jekyll that describes itself as <strong>a blogging framework for hackers</strong>. That sounds good doesn&rsquo;t it? I&rsquo;ve created blog themes in the past but only for Wordpress and although I think it is an amazing piece of software it just didn&rsquo;t work for me.</p>
+
+<p>I&rsquo;m a coding nerd. I prefer to be in my favourite text editor (sublime text) typing away blog posts than in the browser, it&rsquo;s just how I like to work. So I basically fell in love with the idea of using OctoPress because it gave me the chance to</p>
+
+<ul>
+<li>Really get to grips with markdown syntax</li>
+<li>Dig into to some ruby code (I want to learn ruby)</li>
+<li>Create an awesome blog theme!</li>
+</ul>
+
+
+<p>This theme is based on the <a href="http://medium.com">Medium</a> layout and I&rsquo;ve tried to keep it super simple so it has support for gravatar images, twitter sharing and disqus comments.</p>
+
+<p>It&rsquo;s also possible to give the left panel a background-image instead of just a plain color as I have for this site.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='SASS'><span class='line'><span class="k">@if</span> <span class="nv">$image</span> <span class="o">==</span> <span class="n-Pseudo">true</span> <span class="err">{</span>
+</span><span class='line'>  <span class="na">background</span><span class="o">:</span> <span class="nv">$left-background-image</span> <span class="nv">!important</span><span class="err">;</span>
+</span><span class='line'>  <span class="na">border-right</span><span class="o">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="no">solid</span> <span class="nf">darken</span><span class="p">(</span><span class="nv">$base02</span><span class="o">,</span> <span class="mi">5</span><span class="p">)</span> <span class="nv">!important</span><span class="err">;</span>
+</span><span class='line'><span class="err">}</span> <span class="o">@</span><span class="nt">else</span> <span class="err">{</span>
+</span><span class='line'>  <span class="na">background-color</span><span class="o">:</span> <span class="nv">$left-background-color</span><span class="err">;</span>
+</span><span class='line'><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;ve released the theme on <a href="https://github.com/ConnorAtherton/OctoPanel">Github</a> so if you have time please contribute and if you use the theme on your site then please add it to the <a href="https://github.com/ConnorAtherton/OctoPanel/wiki/All-sites-using-this-theme">OctoPanel wiki</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Exploring CSS Syntax]]></title>
