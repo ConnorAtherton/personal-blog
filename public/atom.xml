@@ -4,7 +4,7 @@
   <title><![CDATA[Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-11-03T15:10:10+00:00</updated>
+  <updated>2013-11-09T22:07:00+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Creating a function to queue animations]]></title>
+    <link href="http://blog.connoratherton.com/blog/2013/11/09/creating-a-function-to-queue-animations/"/>
+    <updated>2013-11-09T21:09:00+00:00</updated>
+    <id>http://blog.connoratherton.com/blog/2013/11/09/creating-a-function-to-queue-animations</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been trying to build a presentation today and I&rsquo;m at <em>that</em> stage where I just want to build everything in a browser. It really doesn&rsquo;t matter to me that a task might be ten times harder and take twice as long to implement in a browser, it&rsquo;s the challenge I enjoy. The fact is that I feel more comfortable in Chrome than I ever have in PowerPoint or Word or something like that, plus doing something I&rsquo;ve never done before introduces me to new programming concepts that I otherwise wouldn&rsquo;t have discovered for a while.</p>
+
+<p>Anyway, that&rsquo;s the back story to this post and I apologise for the little ramble there, I&rsquo;m told I just do that sometimes. So what I wanted to build was a function that would step through a series of animations and execute them depending on the time the whole animation process started. Are you with me?</p>
+
+<h2>.animate()</h2>
+
+<p>I know what your thinking <em>&lsquo;Connor just use jQuery&rsquo;s animate method&rsquo;</em> and that would be a sensible statement. After all, we can queue different effects by taking advantage of chaining and jQuery&rsquo;s delay method.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$names</span><span class="p">.</span><span class="nx">fadeIn</span><span class="p">(</span><span class="mi">300</span><span class="p">).</span><span class="nx">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>The above code works as expected, it fades in some element references by <code>$names</code> then it waits for half a seconds and fades it back out again. That was easy. The problem with this approach is that it&rsquo;s too focused around the one element the animation sequence starts from. What if I then want to trigger some custom event right at the bottom of the page? Sure, I could use chaining again to traverse the DOM to find that element but that takes a lot of effort and quickly we&rsquo;ll notice our code becoming extremely brittle even for 2 or maybe 3 animations. No this won&rsquo;t do, we need a new approach. Bring on <code>setInterval()</code>..</p>
+
+<h2>setInterval()</h2>
+
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.setInterval">setInterval</a> is one of the three JavaScript timers and is the one you should use if you want an action to happen repeatedly. So after a few attempts I finally have a simple yet effective animate method working correctly. Here it is.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">animate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">duration</span> <span class="o">=</span> <span class="mi">60000</span><span class="p">,</span> <span class="c1">// animation has to last 60 seconds </span>
+</span><span class='line'>      <span class="nx">interval</span><span class="p">,</span> <span class="c1">// our interval id </span>
+</span><span class='line'>      <span class="nx">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//  </span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// get how many seconds are left then invert it </span>
+</span><span class='line'>    <span class="c1">// to calculate the current time since the animation started  </span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">elapsed</span> <span class="o">=</span> <span class="nx">duration</span> <span class="o">-</span> <span class="p">(</span><span class="nx">duration</span> <span class="o">-</span> <span class="p">(</span><span class="nx">counter</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="c1">// do something at... </span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">elapsed</span> <span class="o">===</span> <span class="mi">5000</span><span class="p">)</span> <span class="c1">// ...5 seconds </span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">elapsed</span> <span class="o">===</span> <span class="mi">10000</span><span class="p">)</span> <span class="c1">// ...10 seconds </span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">elapsed</span> <span class="o">===</span> <span class="mi">50000</span><span class="p">)</span> <span class="c1">// ...50 seconds </span>
+</span><span class='line'>        <span class="c1">// could also use </span>
+</span><span class='line'>        <span class="k">if</span><span class="p">(</span><span class="nx">counter</span> <span class="o">===</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">// ...5 seconds </span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// if we are are at the end then stop animating </span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="nx">elapsed</span> <span class="o">===</span> <span class="nx">duration</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">interval</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span> <span class="c1">// animate every second </span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Using this function I was able to build a presentation full of complex animations and effects with ease. I know there are other mature plugins out there that do this kind of thing such as impress.js but by building it myself I just understand it more. Plus I find it very rewarding to build things like this.</p>
+
+<p>So that&rsquo;s it for this post. I&rsquo;m not done playing with timing functions just yet though, I really want to try and build some animating particle system using <code>requestAnimationFrame</code> but that&rsquo;s for another post.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Introducing OctoPanel]]></title>
