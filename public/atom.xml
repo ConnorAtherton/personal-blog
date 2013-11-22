@@ -4,7 +4,7 @@
   <title><![CDATA[Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-11-16T20:29:31+00:00</updated>
+  <updated>2013-11-21T18:59:46+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[3 Useful JavaScript Tricks]]></title>
+    <link href="http://blog.connoratherton.com/blog/2013/11/21/obscure-yet-useful-javascript/"/>
+    <updated>2013-11-21T17:39:00+00:00</updated>
+    <id>http://blog.connoratherton.com/blog/2013/11/21/obscure-yet-useful-javascript</id>
+    <content type="html"><![CDATA[<p>JavaScript is a language well known for it&rsquo;s little hacks and tricks that help get things done on a project. In some cases they can turn ugly if statements into elegant one liners but in others they can just be overkill. It all comes down to a trade off between elegance and code readability.</p>
+
+<p>In this post I want to show you three common little tricks used by JS hackers.</p>
+
+<h1>Short Circuiting</h1>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">robot</span> <span class="o">&amp;&amp;</span> <span class="nx">robot</span><span class="p">.</span><span class="nx">fight</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is often referred to as &ldquo;short circuiting&rdquo; a logical operator. Think of it as a ternary operator but with no else condition. The first part is evaluated, in this case it&rsquo;s <code>robot</code>, if it&rsquo;s a <code>truthy</code> value the second part is then evaluated. This works because the logical <code>&amp;&amp;</code> operator needs both of its operands to evaluate to a <code>truthy</code> value, if the first one isn&rsquo;t then it doesn&rsquo;t even have to evaluate the second one to know the whole expression will evaluate to <code>false</code></p>
+
+<p>This could also be written like this.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">robot</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">robot</span><span class="p">.</span><span class="nx">fight</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Double Tilde</h1>
+
+<p>The double tilde if often used with integers like this.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">~~</span><span class="mf">3.14</span> <span class="c1">// outputs: 3</span>
+</span><span class='line'><span class="o">~~</span><span class="mf">1.6</span> <span class="c1">// outputs: 1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Wait a minute, that looks familiar, doesn&rsquo;t JS have another function that does that? Why yes it does. Try running Math.floor() passing in the same values as above as arguments and see what happens, the same values are returned. It is a little obscure and in most cases Math.floor() is probably the better choice but <code>~~</code> does come with some <a href="http://jsperf.com/tilde-vs-floor">performance benefits</a>.</p>
+
+<h1>Boolean Casting</h1>
+
+<p>Values in JavaScript can be two different types, <code>truthy</code> or <code>falsy</code>, and it gets quite complicated to know what a value actually evaluates too (<a href="http://www.sitepoint.com/javascript-truthy-falsy/">see here</a>). However, by places <code>!!</code> before an expression we can find out if it evaluates to true or false based on this rule. <em>If <code>!!expression</code> is <code>truthy</code> it evalutes to true and false otherwise.</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// Remember every string except an empty string in JS is truthy</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">string</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">string</span> <span class="o">===</span> <span class="kc">true</span> <span class="c1">// false</span>
+</span><span class='line'><span class="o">!!</span><span class="nx">string</span> <span class="o">===</span> <span class="kc">true</span> <span class="c1">// true</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// also this is also equal</span>
+</span><span class='line'><span class="nb">Boolean</span><span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="o">===</span> <span class="o">!!</span><span class="nx">string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first <code>!</code> here coerces the value to an inverted boolean value and the second <code>!</code> then converts that back so we get returned a boolean representation of our original expression.</p>
+
+<p>Both <code>!!</code> and <code>~~</code> are not themselves operators, they are just the <code>!</code> and <code>~</code> used twice on the same expression.</p>
+
+<p>I find these help a lot when trying to understand libraries or plugins written in JavaScript and this list isn&rsquo;t by any means finished.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A dream come true]]></title>
