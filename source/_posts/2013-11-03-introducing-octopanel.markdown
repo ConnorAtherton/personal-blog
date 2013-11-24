@@ -3,7 +3,7 @@ layout: post
 title: "Introducing OctoPanel"
 date: 2013-11-03 14:18
 comments: true
-categories: 
+categories:
 ---
 
 
@@ -15,9 +15,9 @@ I'm a coding nerd. I prefer to be in my favourite text editor (sublime text) typ
 - Dig into to some ruby code (I want to learn ruby)
 - Create an awesome blog theme!
 
-This theme is based on the [Medium](http://medium.com) layout and I've tried to keep it super simple so it has support for gravatar images, twitter sharing and disqus comments. 
+This theme is based on the **[Medium](http://medium.com)** layout and I've tried to keep it super simple so it has support for gravatar images, twitter sharing and disqus comments.
 
-It's also possible to give the left panel a background-image instead of just a plain color as I have for this site. 
+It's also possible to give the left panel a background-image instead of just a plain color as I have for this site.
 
 ``` SASS
 @if $image == true {
