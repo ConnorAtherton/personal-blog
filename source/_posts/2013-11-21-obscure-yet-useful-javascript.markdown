@@ -6,7 +6,7 @@ comments: true
 categories: [JavaScript]
 ---
 
-JavaScript is a language well known for it's little hacks and tricks that help get things done on a project. In some cases they can turn ugly if statements into elegant one liners but in others they can just be overkill. It all comes down to a trade off between elegance and code readability. 
+JavaScript is a language well known for it's little hacks and tricks that help get things done on a project. In some cases they can turn ugly if statements into elegant one liners but in others they can just be overkill. It all comes down to a trade off between elegance and code readability.
 
 In this post I want to show you three common little tricks used by JS hackers.
 
@@ -28,14 +28,14 @@ if (robot) {
 
 # Double Tilde
 
-The double tilde if often used with integers like this.
+The double tilde if often used with floats like this.
 
 ``` javascript
 ~~3.14 // outputs: 3
 ~~1.6 // outputs: 1
 ```
 
-Wait a minute, that looks familiar, doesn't JS have another function that does that? Why yes it does. Try running Math.floor() passing in the same values as above as arguments and see what happens, the same values are returned. It is a little obscure and in most cases Math.floor() is probably the better choice but `~~` does come with some [performance benefits](http://jsperf.com/tilde-vs-floor).
+Wait a minute, that looks familiar, doesn't JS have another function that does that? Try running Math.floor() passing in the same values as above and see what happens, the same values are returned. It is a little obscure and in most cases Math.floor() is probably the better choice but `~~` does come with some [performance benefits](http://jsperf.com/tilde-vs-floor).
 
 # Boolean Casting
 
@@ -56,7 +56,7 @@ The first `!` here coerces the value to an inverted boolean value and the second
 
 Both `!!` and `~~` are not themselves operators, they are just the `!` and `~` used twice on the same expression.
 
-I find these help a lot when trying to understand libraries or plugins written in JavaScript and this list isn't by any means finished. 
+I find these help a lot when trying to understand libraries or plugins written in JavaScript and this list isn't by any means finished.
 
 
 

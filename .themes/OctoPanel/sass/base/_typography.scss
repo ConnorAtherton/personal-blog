@@ -147,14 +147,14 @@ article blockquote {
 }
 
 p {
-  font-family: $sans; 
+  font-family: $sans;
 }
 
 a {
   text-decoration: none;
 }
 
-.post a {
+.post a , .entry-content a{
   color: $button-light-hover-fill;
   &:hover {
     color: lighten($button-light-hover-fill, 10%);
