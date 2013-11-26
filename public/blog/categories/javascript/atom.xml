@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-11-25T10:47:06+00:00</updated>
+  <updated>2013-11-26T00:53:18+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -43,14 +43,14 @@ if (robot) {</p>
 
 <h1>Double Tilde</h1>
 
-<p>The double tilde if often used with integers like this.</p>
+<p>The double tilde if often used with floats like this.</p>
 
 <p><code>javascript
 ~~3.14 // outputs: 3
 ~~1.6 // outputs: 1
 </code></p>
 
-<p>Wait a minute, that looks familiar, doesn&rsquo;t JS have another function that does that? Why yes it does. Try running Math.floor() passing in the same values as above as arguments and see what happens, the same values are returned. It is a little obscure and in most cases Math.floor() is probably the better choice but <code>~~</code> does come with some <a href="http://jsperf.com/tilde-vs-floor">performance benefits</a>.</p>
+<p>Wait a minute, that looks familiar, doesn&rsquo;t JS have another function that does that? Try running Math.floor() passing in the same values as above and see what happens, the same values are returned. It is a little obscure and in most cases Math.floor() is probably the better choice but <code>~~</code> does come with some <a href="http://jsperf.com/tilde-vs-floor">performance benefits</a>.</p>
 
 <h1>Boolean Casting</h1>
 
