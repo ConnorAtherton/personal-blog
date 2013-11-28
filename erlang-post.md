@@ -4,6 +4,7 @@ title: "Erlang Merge Sort"
 date: 2013-11-24 23:00
 comments: true
 categories:
+published: false
 ---
 
 During the past two weeks I've been introduced to Erlang, a functional programming language. I've only ever briefly used functional programming and that was in Scheme
@@ -13,7 +14,7 @@ It wasn't that I didn't think Scheme was a good language, I was just so used to 
 to adjust to a functional way of thinking. I mean I take for granted every day the fact that it's possible to assign new values to variables but you
 can't do that in Scheme or Erlang or any other functional language. It's fair to say that it takes some getting used too.
 
-So in one of my assignments I was told to create a merge short algorithm and below what I came up with. My solution is tail recursive
+So in one of my assignments I was told to create a merge short algorithm and below is what I came up with. My solution is tail recursive
 and I've tested it with all the cases I could think of so I'm pretty sure it does work.
 
 ``` erlang Erlang Merge Sort
