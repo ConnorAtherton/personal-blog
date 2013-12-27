@@ -56,7 +56,7 @@ The first `!` here coerces the value to an inverted boolean value and the second
 
 Both `!!` and `~~` are not themselves operators, they are just the `!` and `~` used twice on the same expression.
 
-I find these help a lot when trying to understand libraries or plugins written in JavaScript and this list isn't by any means finished.
+I find these help a lot when trying to understand libraries or plugins written in JavaScript.
 
 
 

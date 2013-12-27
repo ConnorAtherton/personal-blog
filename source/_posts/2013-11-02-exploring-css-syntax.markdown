@@ -21,7 +21,7 @@ All that's required is to modify a few styles in a few different places, sounds 
 
 Okay, so maybe that example was a little over dramatic (*just a little*) but I think it made the point that if you want to work in a team on a project then you need to learn how to format styles properly so they are readable and maintainable.
 
-## The good 'ol multi-line format
+## The multi-line format
 
 This is the most popular format for SASS and it's a selector followed by a brace with style declarations starting on the next line and the closing brace on it's own line.
 
@@ -33,7 +33,7 @@ This is the most popular format for SASS and it's a selector followed by a brace
 }
 ```
 
-This code is taken from the theme this very blog is using and one thing to notice is that there is always a space between the selector expression and the opening brace. This isn't enforced by syntax it's just convention. For those of you who do any serious programming this style will seem familiar to you, it's conventional for control statements to be written this way, it's often referred to as the K&R style. 
+This code is taken from the theme this very blog is using and one thing to notice is that there is always a space between the selector expression and the opening brace. This isn't enforced by syntax it's just convention. For those of you who do any serious programming this style will seem familiar to you, it's conventional for control statements to be written this way, it's often referred to as the K&R style.
 
 
 ## The hanging brace
@@ -43,7 +43,7 @@ This one isn't as popular as the format above but you will see it around sometim
 Here is the same code as above but in the new style.
 
 ``` SASS
-.separator 
+.separator
 {
   content: "\2022 ";
   padding: 0 .4em 0 .2em;
@@ -88,21 +88,21 @@ Okay so we haven't done much here so let's take a better example. What you see b
 ```
 
 ``` SASS Opening brace on next line
-#blog-archives 
+#blog-archives
 {
-  article 
+  article
   {
     padding: 1em 0 1em;
     position: relative;
-    &:last-child 
+    &:last-child
     {
       background: none;
     }
   }
-  h1 
+  h1
   {
     font-size: 1.5em;
-    a 
+    a
     {
       @include hover-link;
       color: inherit;
@@ -111,30 +111,30 @@ Okay so we haven't done much here so let's take a better example. What you see b
       display: inline-block;
     }
   }
-  a.category, time 
+  a.category, time
   {
     @extend .sans;
     color: $text-color-light;
   }
   color: $text-color-light;
-  time 
+  time
   {
     font-size: .9em;
     line-height: 1.2em;
-    .month 
-    { 
-      text-transform: uppercase; 
+    .month
+    {
+      text-transform: uppercase;
     }
   }
-  p 
-  { 
-    margin-bottom: 1em; 
-    color: $link-color-hover; 
+  p
+  {
+    margin-bottom: 1em;
+    color: $link-color-hover;
   }
 }
 ```
 
-Placing the brace on the next line makes it easy to see what pair of braces match but SASS just doesn't look as elegant formatted this way. I can't quite put my finger on what makes me slightly dislike this method for SASS, maybe it's because it makes nesting (*one of the best features*) look a bit awkward. 
+Placing the brace on the next line makes it easy to see what pair of braces match but SASS just doesn't look as elegant formatted this way. I can't quite put my finger on what makes me slightly dislike this method for SASS, maybe it's because it makes nesting (*one of the best features*) look a bit awkward.
 
 ## The one liner
 
@@ -146,16 +146,16 @@ This format requires that your two braces be on the same line with all style rul
 .separator { content: "\2022 "; padding: 0 .4em 0 .2em; display: inline-block; }
 ```
 
-Notice the spacing between the different rules. However, even with the spacing this is so much harder to read and here we are using three rules. Imagine if there were 9 or 10! I dread to think how unreadable that would be. However, on the plus side it keeps the file nice and concise. 
+Notice the spacing between the different rules. However, even with the spacing this is so much harder to read and here we are using three rules. Imagine if there were 9 or 10! I dread to think how unreadable that would be. However, on the plus side it keeps the file nice and concise.
 
-My advice would be to use this format only if there is only one or two rules because then it is actually eadier to read as one line. Any more than two then it's best to use one of the first two. 
+My advice would be to use this format only if there is only one or two rules because then it is actually eadier to read as one line. Any more than two then it's best to use one of the first two.
 
 
 ``` SASS
 // this..
-.month 
-{ 
-  text-transform: uppercase; 
+.month
+{
+  text-transform: uppercase;
 }
 
 //..is more readable like this
@@ -163,7 +163,7 @@ My advice would be to use this format only if there is only one or two rules bec
 ```
 
 
-Ultimately, you just **need to be consistent**. If you start writing a style sheet using the first method don't suddenly switch to the second method. That's a big no no, you'll get no stickers if you do that and you'll just confuse people and we don't want to do that now do we.
+Ultimately, you just **need to be consistent**.
 
 
 

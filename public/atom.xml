@@ -4,7 +4,7 @@
   <title><![CDATA[Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-11-28T11:33:16+00:00</updated>
+  <updated>2013-12-27T16:03:29+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -14,19 +14,269 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Moodlerooms Aston Conference]]></title>
-    <link href="http://blog.connoratherton.com/blog/2013/11/28/moodlerooms-aston-conference/"/>
-    <updated>2013-11-28T11:32:00+00:00</updated>
-    <id>http://blog.connoratherton.com/blog/2013/11/28/moodlerooms-aston-conference</id>
-    <content type="html"><![CDATA[
+    <title type="html"><![CDATA[Taming meteor subscriptions]]></title>
+    <link href="http://blog.connoratherton.com/blog/2013/12/25/taming-meteor-subscriptions/"/>
+    <updated>2013-12-25T20:25:00+00:00</updated>
+    <id>http://blog.connoratherton.com/blog/2013/12/25/taming-meteor-subscriptions</id>
+    <content type="html"><![CDATA[<p>Recently I&rsquo;ve been building <a href="http://grader.meteor.com">grader</a>, an interactive grades calculator built with the Meteor JavaScript framework.
+In this post I won&rsquo;t be going into much detail about how I actually built the app, instead I want to focus on how I organised all my subscriptions from the
+client to the server.</p>
+
+<p>Meteor works by publishing and subscribing to things called collections. This is the description giving about the pubsub process straight from the docs</p>
+
+<blockquote><p>Every Meteor client includes an in-memory database cache. To manage the client cache, the server publishes sets of JSON documents, and the client
+subscribes to those sets. As documents in a set change, the server patches each client&rsquo;s cache.</p></blockquote>
+
+<p>On the client we want to subscribe to a collection and then use that data for some other task, in the case of grader it was drawing svg&rsquo;s
+based on values stored in the Mongo database. But what happens if we try and draw the graphs before the subscription is complete?</p>
+
+<p>It was difficult to get my head around this at first but because Meteor loads all <a href="http://docs.meteor.com/#structuringyourapp">legal</a> .js files it&rsquo;s quite tricky to ensure
+the data is actually there before using it. However, although we can&rsquo;t really control load order ourselves we know Meteor loads
+files in accordance with some basic rules. We can use this to our advantage.</p>
+
+<p>Here&rsquo;s how I handled subscriptions in my app, due to the fact that Meteor is pre 1.0 and still gaining traction there aren&rsquo;t a lot of
+standard practices when building applications so if you know a better way to do this then please reach out to me via the comments below
+or twitter.</p>
+
+<p>First I published data to the client.</p>
+
+<figure class='code'><figcaption><span>server/publish.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">// Publish all modules the user owns to the client..</span>
+</span><span class='line'><span class="nx">Meteor</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;modules&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">Modules</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">user_id</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">userId</span><span class="p">});</span>
+</span><span class='line'><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now because all files in the <code>lib</code> folder get loaded first I decided to put all my subscription code in there so it would get executed as quick
+as possible on startup.</p>
+
+<figure class='code'><figcaption><span>client/lib/subscribe.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">_subscriptionComplete</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// subscribe to all collections</span>
+</span><span class='line'><span class="nx">Meteor</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;modules&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">_subscriptionComplete</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I have one variable that controls the state of the subscription. A possible better way to do this would be to put this variable inside an app namespace
+like this to keep our code organised.</p>
+
+<figure class='code'><figcaption><span>client/lib/subscribe.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">App</span> <span class="o">=</span> <span class="nx">App</span> <span class="o">||</span> <span class="p">{};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">_subscriptionComplete</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// subscribe to all collections</span>
+</span><span class='line'><span class="nx">Meteor</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;modules&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">App</span><span class="p">.</span><span class="nx">_subscriptionComplete</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To keep it simple as I only have one subscription we&rsquo;ll stick with the first way. Instead of storing subscription state in a variable we could
+just execute a callback that does everything we want to do when the subscription is complete, such as drawing etc, but that gets very messy quickly and ends
+up with lots of nested callbacks. I prefer the variable approach.</p>
+
+<p>Now if we want to draw to the page based on the data we can do it like this. Note that this only works because our <code>_subscriptionComplete</code> is a <em>global
+variable</em>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">timeout</span> <span class="o">=</span> <span class="nx">Meteor</span><span class="p">.</span><span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nx">_subscriptionComplete</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1">// call function to do drawing here</span>
+</span><span class='line'>    <span class="c1">// because we know we definetely have</span>
+</span><span class='line'>    <span class="c1">// data available</span>
+</span><span class='line'>    <span class="nx">myCoolDrawingFunction</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">Meteor</span><span class="p">.</span><span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timeout</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Like I said in more complex applications with multiple subscriptions there should probably be some kind of object stored that keeps
+track of which subsciptions are and aren&rsquo;t complete.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Erlang Mergesort Algorithm]]></title>
+    <link href="http://blog.connoratherton.com/blog/2013/11/30/erlang-mergesort-algorithm/"/>
+    <updated>2013-11-30T21:36:00+00:00</updated>
+    <id>http://blog.connoratherton.com/blog/2013/11/30/erlang-mergesort-algorithm</id>
+    <content type="html"><![CDATA[<p>During the past two weeks I&rsquo;ve been introduced to Erlang, a functional programming language. I&rsquo;ve only ever briefly used functional programming and that was in Scheme
+a few months back and I didn&rsquo;t really enjoy that. Probably because it seemed a bit foreign to me ,being mainly a web developer, for nearly everything to be implemented using recursion!</p>
+
+<p>It wasn&rsquo;t that I didn&rsquo;t think Scheme was a good language, I was just so used to programming in an imperative style that it took me quite a while
+to adjust to a functional way of thinking. I mean I take for granted every day the fact that it&rsquo;s possible to assign new values to variables but you
+can&rsquo;t do that in Scheme or Erlang or any other functional language. It&rsquo;s fair to say that it takes some getting used too.</p>
+
+<p>So in one of my assignments I was told to create a merge short algorithm and below is what I came up with. My solution is tail recursive
+and I&rsquo;ve tested it with all the cases I could think of so I&rsquo;m pretty sure it does work.</p>
+
+<figure class='code'><figcaption><span>Erlang Merge Sort</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+</pre></td><td class='code'><pre><code class='erlang'><span class='line'><span class="p">-</span><span class="ni">module</span><span class="p">(</span><span class="n">mergesort</span><span class="p">).</span>
+</span><span class='line'><span class="p">-</span><span class="ni">export</span><span class="p">([</span><span class="n">mergesort</span><span class="o">/</span><span class="mi">2</span><span class="p">]).</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% CALLS TO WRAPPER FUNCTION</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% mergesort used when there is actually only one list passed.</span>
+</span><span class='line'><span class="c">% Splits into two lists and calls general mergesort .</span>
+</span><span class='line'><span class="nf">mergesort</span><span class="p">(</span><span class="nv">List</span><span class="p">)</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="c">% I used this before I realised I could</span>
+</span><span class='line'>    <span class="c">% just use lists:sort() to return the list</span>
+</span><span class='line'>    <span class="c">% Splitpoint = length(List) div 2,</span>
+</span><span class='line'>    <span class="c">% {Left, Right} = lists:split(Splitpoint, List),</span>
+</span><span class='line'>    <span class="c">% mergesort(Left, Right).</span>
+</span><span class='line'>    <span class="nn">lists</span><span class="p">:</span><span class="nf">sort</span><span class="p">(</span><span class="nv">List</span><span class="p">).</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% Merge sorting two empty list is just an empty list</span>
+</span><span class='line'><span class="nf">mergesort</span><span class="p">([],</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="p">[];</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% Merge with only one list</span>
+</span><span class='line'><span class="c">% Split list into two and call merge</span>
+</span><span class='line'><span class="nf">mergesort</span><span class="p">(</span><span class="nv">Left</span><span class="p">,</span> <span class="p">[])</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="n">mergesort</span><span class="p">(</span><span class="nv">Left</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="nf">mergesort</span><span class="p">([],</span> <span class="nv">Right</span><span class="p">)</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="n">mergesort</span><span class="p">(</span><span class="nv">Right</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% merge sort with two full lists</span>
+</span><span class='line'><span class="c">% before merging sort the lists into</span>
+</span><span class='line'><span class="c">% ascending order</span>
+</span><span class='line'><span class="nf">mergesort</span><span class="p">(</span><span class="nv">Left</span><span class="p">,</span> <span class="nv">Right</span><span class="p">)</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="nv">Sortedleft</span> <span class="o">=</span> <span class="nn">lists</span><span class="p">:</span><span class="nf">sort</span><span class="p">(</span><span class="nv">Left</span><span class="p">),</span>
+</span><span class='line'>    <span class="nv">Sortedright</span> <span class="o">=</span> <span class="nn">lists</span><span class="p">:</span><span class="nf">sort</span><span class="p">(</span><span class="nv">Right</span><span class="p">),</span>
+</span><span class='line'>    <span class="n">merge</span><span class="p">(</span><span class="nv">Sortedleft</span><span class="p">,</span> <span class="nv">Sortedright</span><span class="p">,</span> <span class="p">[]).</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% ACTUAL WRAPPER FUNCTION</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% terminating case when all elements have been sorted</span>
+</span><span class='line'><span class="nf">merge</span><span class="p">([],</span> <span class="p">[],</span> <span class="nv">List</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nn">lists</span><span class="p">:</span><span class="nf">reverse</span><span class="p">(</span><span class="nv">List</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% No Right list left</span>
+</span><span class='line'><span class="nf">merge</span><span class="p">([</span><span class="nv">L</span><span class="p">|</span><span class="nv">Left</span><span class="p">],</span> <span class="p">[],</span> <span class="nv">List</span><span class="p">)</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="n">merge</span><span class="p">(</span><span class="nv">Left</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="nv">L</span><span class="p">|</span><span class="nv">List</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% No Left list left</span>
+</span><span class='line'><span class="nf">merge</span><span class="p">([],</span> <span class="p">[</span><span class="nv">R</span><span class="p">|</span><span class="nv">Right</span><span class="p">],</span> <span class="nv">List</span><span class="p">)</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="n">merge</span><span class="p">([],</span> <span class="nv">Right</span><span class="p">,</span> <span class="p">[</span><span class="nv">R</span><span class="p">|</span><span class="nv">List</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% General recursive case 1</span>
+</span><span class='line'><span class="c">% if the Right head is less than the left</span>
+</span><span class='line'><span class="c">% add it to our sorted list and remove it</span>
+</span><span class='line'><span class="c">% from the original list</span>
+</span><span class='line'><span class="nf">merge</span><span class="p">([</span><span class="nv">L</span><span class="p">|</span><span class="nv">Left</span><span class="p">],</span> <span class="p">[</span><span class="nv">R</span><span class="p">|</span><span class="nv">Right</span><span class="p">],</span> <span class="nv">List</span><span class="p">)</span> <span class="k">when</span> <span class="nv">R</span> <span class="o">&lt;</span> <span class="nv">L</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="n">merge</span><span class="p">([</span><span class="nv">L</span><span class="p">|</span><span class="nv">Left</span><span class="p">],</span> <span class="nv">Right</span><span class="p">,</span> <span class="p">[</span><span class="nv">R</span><span class="p">|</span><span class="nv">List</span><span class="p">]);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">% General recursive case 2</span>
+</span><span class='line'><span class="c">% If we are in this case then the</span>
+</span><span class='line'><span class="c">% right head isn&#39;t less than and no guard</span>
+</span><span class='line'><span class="c">% is required because we know we can just</span>
+</span><span class='line'><span class="c">% add it to the list</span>
+</span><span class='line'><span class="nf">merge</span><span class="p">([</span><span class="nv">L</span><span class="p">|</span><span class="nv">Left</span><span class="p">],</span> <span class="nv">Right</span><span class="p">,</span> <span class="nv">List</span><span class="p">)</span> <span class="o">-&gt;</span>
+</span><span class='line'>    <span class="n">merge</span><span class="p">(</span><span class="nv">Left</span><span class="p">,</span> <span class="nv">Right</span><span class="p">,</span> <span class="p">[</span><span class="nv">L</span><span class="p">|</span><span class="nv">List</span><span class="p">]).</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[3 Useful JavaScript Tricks]]></title>
-    <link href="http://blog.connoratherton.com/blog/2013/11/21/obscure-yet-useful-javascript/"/>
+    <link href="http://blog.connoratherton.com/blog/2013/11/21/3-Useful-JavaScript-Tricks/"/>
     <updated>2013-11-21T17:39:00+00:00</updated>
-    <id>http://blog.connoratherton.com/blog/2013/11/21/obscure-yet-useful-javascript</id>
+    <id>http://blog.connoratherton.com/blog/2013/11/21/3-Useful-JavaScript-Tricks</id>
     <content type="html"><![CDATA[<p>JavaScript is a language well known for it&rsquo;s little hacks and tricks that help get things done on a project. In some cases they can turn ugly if statements into elegant one liners but in others they can just be overkill. It all comes down to a trade off between elegance and code readability.</p>
 
 <p>In this post I want to show you three common little tricks used by JS hackers.</p>
@@ -91,7 +341,7 @@
 
 <p>Both <code>!!</code> and <code>~~</code> are not themselves operators, they are just the <code>!</code> and <code>~</code> used twice on the same expression.</p>
 
-<p>I find these help a lot when trying to understand libraries or plugins written in JavaScript and this list isn&rsquo;t by any means finished.</p>
+<p>I find these help a lot when trying to understand libraries or plugins written in JavaScript.</p>
 ]]></content>
   </entry>
   
@@ -285,7 +535,7 @@
 
 <p>Okay, so maybe that example was a little over dramatic (<em>just a little</em>) but I think it made the point that if you want to work in a team on a project then you need to learn how to format styles properly so they are readable and maintainable.</p>
 
-<h2>The good &lsquo;ol multi-line format</h2>
+<h2>The multi-line format</h2>
 
 <p>This is the most popular format for SASS and it&rsquo;s a selector followed by a brace with style declarations starting on the next line and the closing brace on it&rsquo;s own line.</p>
 
@@ -521,7 +771,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Ultimately, you just <strong>need to be consistent</strong>. If you start writing a style sheet using the first method don&rsquo;t suddenly switch to the second method. That&rsquo;s a big no no, you&rsquo;ll get no stickers if you do that and you&rsquo;ll just confuse people and we don&rsquo;t want to do that now do we.</p>
+<p>Ultimately, you just <strong>need to be consistent</strong>.</p>
 ]]></content>
   </entry>
   

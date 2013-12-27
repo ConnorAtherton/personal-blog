@@ -4,7 +4,7 @@
   <title><![CDATA[Category: SASS | Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/blog/categories/sass/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-11-28T11:33:16+00:00</updated>
+  <updated>2013-12-27T16:03:29+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -32,7 +32,7 @@
 
 <p>Okay, so maybe that example was a little over dramatic (<em>just a little</em>) but I think it made the point that if you want to work in a team on a project then you need to learn how to format styles properly so they are readable and maintainable.</p>
 
-<h2>The good &lsquo;ol multi-line format</h2>
+<h2>The multi-line format</h2>
 
 <p>This is the most popular format for SASS and it&rsquo;s a selector followed by a brace with style declarations starting on the next line and the closing brace on it&rsquo;s own line.</p>
 
@@ -121,7 +121,7 @@ line-height: 1.2em;
 
 <pre><code>padding: 1em 0 1em;
 position: relative;
-&amp;:last-child 
+&amp;:last-child
 {
   background: none;
 }
@@ -132,7 +132,7 @@ position: relative;
   {</p>
 
 <pre><code>font-size: 1.5em;
-a 
+a
 {
   @include hover-link;
   color: inherit;
@@ -157,9 +157,9 @@ color: $text-color-light;
 
 <pre><code>font-size: .9em;
 line-height: 1.2em;
-.month 
-{ 
-  text-transform: uppercase; 
+.month
+{
+  text-transform: uppercase;
 }
 </code></pre>
 
@@ -167,8 +167,8 @@ line-height: 1.2em;
   p
   {</p>
 
-<pre><code>margin-bottom: 1em; 
-color: $link-color-hover; 
+<pre><code>margin-bottom: 1em;
+color: $link-color-hover;
 </code></pre>
 
 <p>  }
@@ -202,7 +202,7 @@ color: $link-color-hover;
 .month { text-transform: uppercase; }
 ```</p>
 
-<p>Ultimately, you just <strong>need to be consistent</strong>. If you start writing a style sheet using the first method don&rsquo;t suddenly switch to the second method. That&rsquo;s a big no no, you&rsquo;ll get no stickers if you do that and you&rsquo;ll just confuse people and we don&rsquo;t want to do that now do we.</p>
+<p>Ultimately, you just <strong>need to be consistent</strong>.</p>
 ]]></content>
   </entry>
   

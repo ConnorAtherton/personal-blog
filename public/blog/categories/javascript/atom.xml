@@ -4,7 +4,7 @@
   <title><![CDATA[Category: JavaScript | Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-11-28T11:33:16+00:00</updated>
+  <updated>2013-12-27T16:03:29+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[3 Useful JavaScript Tricks]]></title>
-    <link href="http://blog.connoratherton.com/blog/2013/11/21/obscure-yet-useful-javascript/"/>
+    <link href="http://blog.connoratherton.com/blog/2013/11/21/3-Useful-JavaScript-Tricks/"/>
     <updated>2013-11-21T17:39:00+00:00</updated>
-    <id>http://blog.connoratherton.com/blog/2013/11/21/obscure-yet-useful-javascript</id>
+    <id>http://blog.connoratherton.com/blog/2013/11/21/3-Useful-JavaScript-Tricks</id>
     <content type="html"><![CDATA[<p>JavaScript is a language well known for it&rsquo;s little hacks and tricks that help get things done on a project. In some cases they can turn ugly if statements into elegant one liners but in others they can just be overkill. It all comes down to a trade off between elegance and code readability.</p>
 
 <p>In this post I want to show you three common little tricks used by JS hackers.</p>
@@ -71,7 +71,7 @@ Boolean(string) === !!string
 
 <p>Both <code>!!</code> and <code>~~</code> are not themselves operators, they are just the <code>!</code> and <code>~</code> used twice on the same expression.</p>
 
-<p>I find these help a lot when trying to understand libraries or plugins written in JavaScript and this list isn&rsquo;t by any means finished.</p>
+<p>I find these help a lot when trying to understand libraries or plugins written in JavaScript.</p>
 ]]></content>
   </entry>
   

@@ -1,14 +1,13 @@
 ---
 layout: post
-title: "Erlang Merge Sort"
-date: 2013-11-24 23:00
+title: "Erlang Mergesort Algorithm"
+date: 2013-11-30 21:36
 comments: true
-categories:
-published: false
+categories: [Erlang, Function Programming, Lists]
 ---
 
 During the past two weeks I've been introduced to Erlang, a functional programming language. I've only ever briefly used functional programming and that was in Scheme
-a few months back and I didn't really enjoy that. Probably because nearly everything was just implemented using recursion!
+a few months back and I didn't really enjoy that. Probably because it seemed a bit foreign to me ,being mainly a web developer, for nearly everything to be implemented using recursion!
 
 It wasn't that I didn't think Scheme was a good language, I was just so used to programming in an imperative style that it took me quite a while
 to adjust to a functional way of thinking. I mean I take for granted every day the fact that it's possible to assign new values to variables but you
@@ -46,7 +45,7 @@ mergesort([], Right) ->
 
 % merge sort with two full lists
 % before merging sort the lists into
-% ascending order (Keep getting order issues without this!)
+% ascending order
 mergesort(Left, Right) ->
     Sortedleft = lists:sort(Left),
     Sortedright = lists:sort(Right),
@@ -80,3 +79,4 @@ merge([L|Left], [R|Right], List) when R < L ->
 merge([L|Left], Right, List) ->
     merge(Left, Right, [L|List]).
 ```
+
