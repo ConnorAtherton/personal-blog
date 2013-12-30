@@ -4,7 +4,7 @@
   <title><![CDATA[Socks Off and Code.]]></title>
   <link href="http://blog.connoratherton.com/atom.xml" rel="self"/>
   <link href="http://blog.connoratherton.com/"/>
-  <updated>2013-12-27T16:03:29+00:00</updated>
+  <updated>2013-12-30T18:16:24+00:00</updated>
   <id>http://blog.connoratherton.com/</id>
   <author>
     <name><![CDATA[Connor Atherton]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[New years resolutions]]></title>
+    <link href="http://blog.connoratherton.com/blog/2013/12/30/new-years-resolutions/"/>
+    <updated>2013-12-30T17:48:00+00:00</updated>
+    <id>http://blog.connoratherton.com/blog/2013/12/30/new-years-resolutions</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve noticed a few of these kind of posts surfacing around the internet today so I thought it would be a good idea
+to set myself a few goals for 2014.</p>
+
+<p>If nothing else, I have something written down that I can look back on and at least have some sort of baseline of how
+good the year is going. 2014 is an incredibly important year for me. I&rsquo;m going for a once in a lifetime trip to Brazil
+for the World Cup, something that has been over a year in planning already. I graduate in July and then it&rsquo;s into the &lsquo;real world&rsquo;
+as people keep telling me. I suppose it makes sense, being a student living away from home comes with its own independance but I
+feel like I&rsquo;m still wrapped in a bubble. I want to escape, I know I need to go and work for a real company solving real problems.</p>
+
+<p>Finally I turn 21 at the end of August, another reminder that I have to start making important decisions about my future. The whole idea of
+what to do next idea has been on my mind for quite some time now and I think I have an answer. I now know I want, eventually, to start my own company.</p>
+
+<p>Before that though my heart is set on working for a startup. I&rsquo;ve had contact with some startups based in London over the past few months
+enquiring if I would be interested in working for them. I suspect this is because I have a profile on AngelList. Anyway, here&rsquo;s a message to you
+future Connor.</p>
+
+<blockquote><p>Although graduate jobs offer lots of money for a twenty year old, you know you&rsquo;ll be a lot happier working for less money on something
+you love and you already know what that is. Find a job you love.</p></blockquote>
+
+<p>Okay, next one. I&rsquo;ve been using Sublime Text 2 for a while now and while it is incredible I think it&rsquo;s time for me to try something else.
+Spice it up a bit. Don&rsquo;t get me wrong sublime is incredible, I have no complaints whatsoever. However, my typing technique is atrocious
+and knowing that I&rsquo;ll be typing lots over the next few years means I need to learn to touch type. My plan is to slowly switch to vim during
+January and at the start of February use vim exclusively for the next few months.</p>
+
+<p>It will be a tough transition but a one I know will benefit me greatly for the rest of my life as a developer.</p>
+
+<blockquote><p>Learn to touch type and become a vim ninja. Just keep building things.</p></blockquote>
+
+<p>This one is very simple, be happy. I&rsquo;m generally a calm person and find good ways of avoiding stress. That&rsquo;s not to say I don&rsquo;t find myself
+in stressful situations, I&rsquo;ve just learned over the years to relax more and enjoy the challenge. That coupled with working extremely
+hard goes quite far. One habit that&rsquo;s kept me happy this year is working out and staying in shape. My whole day is lot more productive if I
+get to the gym in the morning. It&rsquo;s also good when you&rsquo;ve been programming too long. I can go hours engrossed in code and not drink, eat or even stand up,
+so staying active is pretty critical in my life.</p>
+
+<blockquote><p>Stay happy. Work hard and enjoy the journey. Get in the best shape of your life for Brazil.</p></blockquote>
+
+<p>Maybe most important of all.</p>
+
+<blockquote><p>Never stop learning&hellip;</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Taming meteor subscriptions]]></title>
