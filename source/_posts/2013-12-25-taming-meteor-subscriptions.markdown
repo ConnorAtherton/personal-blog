@@ -73,7 +73,6 @@ var timeout = Meteor.setInterval(function(){
 
   if(_subscriptionComplete) {
     // call function to do drawing here
-    // because we know the data is available
     myCoolDrawingFunction();
     Meteor.clearInterval(timeout);
   }
