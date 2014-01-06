@@ -73,8 +73,7 @@ var timeout = Meteor.setInterval(function(){
 
   if(_subscriptionComplete) {
     // call function to do drawing here
-    // because we know we definetely have
-    // data available
+    // because we know the data is available
     myCoolDrawingFunction();
     Meteor.clearInterval(timeout);
   }
@@ -82,7 +81,7 @@ var timeout = Meteor.setInterval(function(){
 }, 100);
 ```
 
-Like I said in more complex applications with multiple subscriptions there should probably be some kind of object stored that keeps
+Like I said in more complex applications with multiple subscriptions there should probably be some kind of object that keeps
 track of which subsciptions are and aren't complete.
 
 
